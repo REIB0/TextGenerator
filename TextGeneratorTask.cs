@@ -22,29 +22,37 @@ namespace TextAnalysis
                 string nextWord = "";
                 if (phraseBeginningList.Count < 2)
                 {
-                    if (nextWords.ContainsKey(phraseBeginningList[0]))
-                    {
-                        phraseBeginningList.Add(nextWords[phraseBeginningList[0]]);
-                    }
+                    PhraseBeginningSmallerThanTwo(phraseBeginningList, nextWords);
                 }
                 else if (phraseBeginningList.Count >= 2)
                 {
-
-                    string triGramWordsKey = string.Join(" ", phraseBeginningList[phraseBeginningList.Count - 2], phraseBeginningList[phraseBeginningList.Count - 1]);
-                    string biGramWordsKey = phraseBeginningList[phraseBeginningList.Count - 1];
-                    if (nextWords.ContainsKey(triGramWordsKey))
-                    {
-                        phraseBeginningList.Add(nextWords[triGramWordsKey]);
-                    }
-                    else if (nextWords.ContainsKey(biGramWordsKey))
-                    {
-                        phraseBeginningList.Add(nextWords[biGramWordsKey]);
-                    }
+                    PhraseBeginningBiggerThanTwo(phraseBeginningList, nextWords);
                 }
 
             }
             phraseBeginning = string.Join(" ", phraseBeginningList.ToArray());
             return phraseBeginning;
+        }
+        private static void PhraseBeginningSmallerThanTwo(List<string> phraseBeginningList, Dictionary<string, string> nextWords)
+        {
+            if (nextWords.ContainsKey(phraseBeginningList[0]))
+            {
+                phraseBeginningList.Add(nextWords[phraseBeginningList[0]]);
+            }
+
+        }
+        private static void PhraseBeginningBiggerThanTwo(List<string> phraseBeginningList, Dictionary<string, string> nextWords)
+        {
+            string triGramWordsKey = string.Join(" ", phraseBeginningList[phraseBeginningList.Count - 2], phraseBeginningList[phraseBeginningList.Count - 1]);
+            string biGramWordsKey = phraseBeginningList[phraseBeginningList.Count - 1];
+            if (nextWords.ContainsKey(triGramWordsKey))
+            {
+                phraseBeginningList.Add(nextWords[triGramWordsKey]);
+            }
+            else if (nextWords.ContainsKey(biGramWordsKey))
+            {
+                phraseBeginningList.Add(nextWords[biGramWordsKey]);
+            }
         }
     }
 }
