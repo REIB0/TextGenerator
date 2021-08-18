@@ -29,6 +29,7 @@ namespace TextAnalysis
                 }
                 else if (phraseBeginningList.Count >= 2)
                 {
+
                     string triGramWordsKey = string.Join(" ", phraseBeginningList[phraseBeginningList.Count - 2], phraseBeginningList[phraseBeginningList.Count - 1]);
                     string biGramWordsKey = phraseBeginningList[phraseBeginningList.Count - 1];
                     if (nextWords.ContainsKey(triGramWordsKey))

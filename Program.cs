@@ -46,12 +46,13 @@ namespace TextAnalysis
 
             while (true)
             {
+                Console.Write("Введите число слов: ");
+                int numberOfWords = int.Parse(Console.ReadLine());
                 Console.Write("Введите первое слово (например, harry): ");
                 var beginning = Console.ReadLine();
-                Console.Write("Введите число слов: ");    
-               // int numberOfWords =Convert.ToInt32().Console.ReadLine();
+
                 if (string.IsNullOrEmpty(beginning)) return;
-                var phrase = TextGeneratorTask.ContinuePhrase(frequency, beginning.ToLower(), 10);
+                var phrase = TextGeneratorTask.ContinuePhrase(frequency, beginning.ToLower(), numberOfWords);
                 Console.WriteLine(phrase);
             }
             Console.ReadKey();
