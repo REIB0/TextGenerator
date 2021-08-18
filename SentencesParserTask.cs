@@ -30,7 +30,7 @@ namespace TextAnalysis
 
             return correctSentencesList;
         }
-        private static List<string> GetListOfWords(string sentence)
+        public static List<string> GetListOfWords(string sentence)
         {
 
             var wordBuilder = new StringBuilder();
